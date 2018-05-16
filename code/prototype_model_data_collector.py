@@ -7,10 +7,12 @@ import time
 import class_collector as classes
 import sys
 
+# collects data during calibration period and immediately trains decision tree model
+
 def collect(filename):
     # initializing things
-    numIters = 8
-    iterLength = 20
+    numIters = 8 # number of positions to cycle through during calibration
+    iterLength = 20 # number of loops each position should be held for
     ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=None)
     pygame.init()
     file = open(filename, "w", encoding="utf8")

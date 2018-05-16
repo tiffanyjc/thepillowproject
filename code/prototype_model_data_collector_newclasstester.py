@@ -6,6 +6,8 @@ import os
 import time
 import class_collector as classes
 
+# same as prototype_model_data_collector but calibrates for head angle rather than sleeping position
+
 def collect():
     # initializing things
     numIters = 10

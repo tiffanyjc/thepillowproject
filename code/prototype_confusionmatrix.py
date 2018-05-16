@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 
+# draws the confusion matrix for decision tree results analysis
 
 def print_conf_matrix(y_true, y_pred,
                              classes,

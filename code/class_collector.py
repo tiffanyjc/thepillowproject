@@ -1,5 +1,6 @@
 import csv
 
+# collects the order of classes to be used during the calibration period
 def collect():
     # initializing things
     file = open("classes.csv", "rt", encoding="utf8")
@@ -7,7 +8,7 @@ def collect():
     headers = next(reader)
     positionFlow = {}
 
-    # csv header order: class // ground // next // command
+    # csv header order: class // ground // next class // spoken command
 
     for obs in reader:
 
@@ -19,10 +20,8 @@ def collect():
             if i:
                 positionFlow[obsClass][headers[i]] = obs[i]
 
-        # positionFlow[obsClass]['ground'] = int(positionFlow[obsClass]['ground'])
         positionFlow[obsClass]['command'] = "say '" + positionFlow[obsClass]['command'] + "'"
 
-    # print(positionFlow["front"])
     file.close()
 
     return positionFlow

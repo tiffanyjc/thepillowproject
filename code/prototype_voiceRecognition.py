@@ -5,6 +5,7 @@ import os
 r = sr.Recognizer()
 print("Say something!")
 
+# continuously listens for commands
 while True:
 
     with sr.Microphone() as source:
@@ -17,7 +18,9 @@ while True:
         # instead of `r.recognize_google(audio)`
         said = r.recognize_google(audio).lower()
         print("You said: " + said)
-        if (said == "hey google"):
+
+        # only activate when user says "hey pillow"
+        if (said == "hey pillow"):
             os.system("say 'How can I help you?'")
 
             with sr.Microphone() as source:

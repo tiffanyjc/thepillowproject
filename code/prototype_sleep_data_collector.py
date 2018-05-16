@@ -5,12 +5,15 @@ import time
 import prototype_sendData as sender
 import sys
 
+# collects and writes sleeping data to the giving csv filename
 def collect(filename):
-    # initializing things
+    # initializing things -- serial port URL should be from whichever USB port the arduino is connected to
     ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=None)
     pygame.init()
     file = open(filename, "w", encoding="utf8")
     writer = csv.writer(file)
+
+    # change this if you want to use a different userID
     userID = "1234"
 
     # set up headers
@@ -21,6 +24,7 @@ def collect(filename):
 
     writer.writerow(headers)
 
+    # continuously collect datapoints
     while True:
         try:
             # read data from arduino
@@ -47,6 +51,8 @@ def collect(filename):
 
     file.close()
     ser.close()
+
+    # send data to SleepCoacher server
     sender.sendData(filename, userID)
     print("data sent!")
 
