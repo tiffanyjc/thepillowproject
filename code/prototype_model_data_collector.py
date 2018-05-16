@@ -13,6 +13,8 @@ def collect(filename):
     # initializing things
     numIters = 8 # number of positions to cycle through during calibration
     iterLength = 20 # number of loops each position should be held for
+
+    # TODO: change usb port to match yours! (make sure u do this in every file)
     ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=None)
     pygame.init()
     file = open(filename, "w", encoding="utf8")
@@ -84,7 +86,7 @@ def collect(filename):
     tree.trainer(filename, '')
 
 
-# when it's executed on command line
+# when it's executed on command line .. need to input filename as first arg
 if __name__ == "__main__":
     first_arg = sys.argv[1]
     collect(first_arg)

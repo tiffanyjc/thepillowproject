@@ -39,6 +39,7 @@ void loop(void)
   imu::Vector<3> gyro = bno.getVector(Adafruit_BNO055::VECTOR_GYROSCOPE);
   imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
 
+// keep all the spaces to separate data! python will read this as a very long string 
 // get time 
 time = millis(); 
 Serial.print((float) time / 1000); 
