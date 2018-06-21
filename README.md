@@ -1,6 +1,7 @@
 ﻿# The Pillow Project
 
 > A Brown HCI Group Research Project
+
 > Prototype developed by Tiffany Chen as her senior thesis
 
 ## Dependencies
@@ -29,5 +30,4 @@
 	* Can be changed to use other machine learning models.
 
 * prototype_sendData.py
-	* Sends data files to SleepCoacher server. 
-
+	* Sends data files to SleepCoacher server.
