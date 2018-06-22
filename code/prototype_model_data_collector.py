@@ -15,7 +15,7 @@ def collect(filename):
     iterLength = 20 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
-    ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=None)
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=None)
     pygame.init()
     file = open(filename, "w", encoding="utf8")
     writer = csv.writer(file)
