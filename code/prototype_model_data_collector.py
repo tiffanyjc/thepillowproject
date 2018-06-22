@@ -33,7 +33,7 @@ def collect(filename):
 
     current = "right"
     print("current: ", current)
-    os.system("say 'please turn onto your '")
+    os.system("espeak 'please turn onto your '")
     os.system(positionFlow[current]["command"])
 
     start = time.time()
@@ -68,7 +68,7 @@ def collect(filename):
             elif (time.time() - start > iterLength):
                 current = positionFlow[current]["next"]
                 print("current: ", current)
-                os.system("say 'please turn onto your '")
+                os.system("espeak 'please turn onto your '")
                 os.system(positionFlow[current]["command"])
                 time.sleep(2)
                 print("continue")
@@ -79,7 +79,7 @@ def collect(filename):
             break
 
     file.close()
-    os.system("say 'this study is done. thank you.'")
+    os.system("espeak 'this study is done. thank you.'")
     ser.close()
 
     print("training decision tree model")
