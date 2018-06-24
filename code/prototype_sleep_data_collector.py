@@ -8,7 +8,7 @@ import sys
 # collects and writes sleeping data to the giving csv filename
 def collect(filename):
     # initializing things -- serial port URL should be from whichever USB port the arduino is connected to
-    ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=None)
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=None)
     pygame.init()
     file = open(filename, "w", encoding="utf8")
     writer = csv.writer(file)

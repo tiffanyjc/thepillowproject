@@ -21,7 +21,7 @@ while True:
 
         # only activate when user says "hey pillow"
         if (said == "hey pillow"):
-            os.system("say 'How can I help you?'")
+            os.system("espeak 'How can I help you?'")
 
             with sr.Microphone() as source:
                 audio = r.listen(source)
@@ -31,17 +31,17 @@ while True:
                 print("You said: " + said)
 
                 if (said == "recalibrate"):
-                    os.system("say 'Okay. Recalibrating.'")
+                    os.system("espeak 'Okay. Recalibrating.'")
                     import prototype_model_data_collector as prototype
 
                 else:
-                    os.system("say 'Sorry, I did not understand.'")
+                    os.system("espeak 'Sorry, I did not understand.'")
             except sr.UnknownValueError:
                 print("Google Speech Recognition could not understand audio")
-                os.system("say 'Sorry, I did not understand.'")
+                os.system("espeak 'Sorry, I did not understand.'")
             except sr.RequestError as e:
                 print("Could not request results from Google Speech Recognition service; {0}".format(e))
-                os.system("say 'Sorry, I can't take your request at this time'")
+                os.system("espeak 'Sorry, I can't take your request at this time'")
     except sr.UnknownValueError:
         print("Google Speech Recognition could not understand audio")
     except sr.RequestError as e:
