@@ -7,6 +7,15 @@
 ## Dependencies
 * Python 3
 * Arduino
+* SpeechRecognition
+* PyAudio
+* Portaudio
+* FLAC
+* Matplotlib 
+* scikit-learn,
+* espeak 
+* numpy
+* scipy
 
 ## Hardware
 * Raspberry Pi 3 Model B+
@@ -30,4 +39,5 @@
 	* Can be changed to use other machine learning models.
 
 * prototype_sendData.py
-	* Sends data files to SleepCoacher server.
+	* Sends data files to SleepCoacher server. 
+
