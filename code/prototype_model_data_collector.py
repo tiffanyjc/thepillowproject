@@ -15,7 +15,7 @@ def collect(filename):
     iterLength = 20 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
-    ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=None)
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=None)
     pygame.init()
     file = open(filename, "w", encoding="utf8")
     writer = csv.writer(file)
@@ -33,7 +33,7 @@ def collect(filename):
 
     current = "right"
     print("current: ", current)
-    os.system("say 'please turn onto your '")
+    os.system("espeak 'please turn onto your '")
     os.system(positionFlow[current]["command"])
 
     start = time.time()
@@ -68,7 +68,7 @@ def collect(filename):
             elif (time.time() - start > iterLength):
                 current = positionFlow[current]["next"]
                 print("current: ", current)
-                os.system("say 'please turn onto your '")
+                os.system("espeak 'please turn onto your '")
                 os.system(positionFlow[current]["command"])
                 time.sleep(2)
                 print("continue")
@@ -79,7 +79,7 @@ def collect(filename):
             break
 
     file.close()
-    os.system("say 'this study is done. thank you.'")
+    os.system("espeak 'this study is done. thank you.'")
     ser.close()
 
     print("training decision tree model")
