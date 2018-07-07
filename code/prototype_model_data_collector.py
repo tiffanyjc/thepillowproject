@@ -6,6 +6,7 @@ import os
 import time
 import class_collector as classes
 import sys
+import playSound
 
 # collects data during calibration period and immediately trains decision tree model
 
@@ -68,6 +69,7 @@ def collect(filename):
             elif (time.time() - start > iterLength):
                 current = positionFlow[current]["next"]
                 print("current: ", current)
+                playSound('../sounds/transitionBeep.wav')
                 os.system("espeak 'please turn onto your '")
                 os.system(positionFlow[current]["command"])
                 time.sleep(2)
@@ -79,7 +81,8 @@ def collect(filename):
             break
 
     file.close()
-    os.system("espeak 'this study is done. thank you.'")
+    playSound('../sounds/confirmationBeep.wav')
+    os.system("espeak 'finished calibrating.'")
     ser.close()
 
     print("training decision tree model")
