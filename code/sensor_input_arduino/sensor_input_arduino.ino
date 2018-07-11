@@ -3,6 +3,7 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
+#include <MuxShield.h>
 
   
 Adafruit_BNO055 bno = Adafruit_BNO055(55);
@@ -11,8 +12,19 @@ unsigned int sample;
 int l = 0; 
 unsigned long time; 
 
+//Initialize the Mux Shield
+MuxShield muxShield;
+
+int numPin1 = 16;
+int numPin2 = 4;
+
 void setup(void) 
 {
+  //Set I/O 1, I/O 2, and I/O 3 as analog inputs
+  muxShield.setMode(1,ANALOG_IN);
+  muxShield.setMode(2,ANALOG_IN);
+  //muxShield.setMode(3,ANALOG_IN);
+  
   Serial.end(); 
   Serial.begin(9600);
 //  Serial.println("Orientation Sensor Test"); Serial.println("");
@@ -29,6 +41,12 @@ void setup(void)
     
   bno.setExtCrystalUse(true);
 }
+
+//Arrays to store analog values after recieving them
+int IO1AnalogVals[4];
+int IO2AnalogVals[16];
+//int IO3AnalogVals[];
+
  
 void loop(void) 
 {
@@ -111,7 +129,27 @@ Serial.print(" ");
    Serial.println(" "); 
 
    // end microphone stuff
+   
+   //FSR Pressure Grid
+   
+    for (int i = 0; i < numPin1; i ++) {
+      IO2AnalogVals[i] = muxShield.analogReadMS(2,i);
+    }
 
+    for (int j = 0; j < numPin2; j ++) {
+      IO1AnalogVals[j] = muxShield.analogReadMS(1,j);
+    }
+      
+    for (int k = 0; k < numPin1; k ++) {
+      Serial.print(IO2AnalogVals[k]);
+      Serial.print(' '); 
+    }
+
+    for (int l = 0; l < numPin2; l ++) {
+      Serial.print(IO1AnalogVals[l]);
+      Serial.print(' '); 
+  }
+   
     delay(250); 
 }
 
