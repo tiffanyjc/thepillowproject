@@ -26,8 +26,9 @@ def collect(filename):
     # set up headers
     headers = ["time", "accelX", "accelY", "accelZ", "gyroX", "gyroY", "gyroZ", "eulerX", "eulerY", "eulerZ", "mic"]
 
-    for i in range(1, 324):
-        headers.append("key" + str(i))
+    # changed to FSR pressure grid
+    for i in range(20):
+        headers.append("FSR" + str(i))
 
     headers.append("ground")
     writer.writerow(headers)
@@ -50,12 +51,12 @@ def collect(filename):
             # epoch time
             obs[0] = float(time.time())
 
-            # read from keyboard, append each as binary to obs
-            pygame.event.get()
-            keypressed = pygame.key.get_pressed()
-
-            for k in keypressed:
-                obs.append(k)
+            # # read from keyboard, append each as binary to obs
+            # pygame.event.get()
+            # keypressed = pygame.key.get_pressed()
+            #
+            # for k in keypressed:
+            #     obs.append(k)
 
             # append ground truth
             obs.append(positionFlow[current]["ground"])
