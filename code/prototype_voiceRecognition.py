@@ -39,6 +39,7 @@ while True:
                     import prototype_model_data_collector as prototype
                 elif (said == "play white noise") or (said == "play rain sounds"):
                     #playSound("../sounds/rain.mp3")
+                    print ("white noise")
                 else:
                     os.system("espeak 'Sorry, I did not understand.'")
 
