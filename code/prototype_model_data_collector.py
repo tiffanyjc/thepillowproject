@@ -6,7 +6,7 @@ import os
 import time
 import class_collector as classes
 import sys
-#import playSound
+import playSound
 
 # collects data during calibration period and immediately trains decision tree model
 
@@ -48,21 +48,23 @@ def collect(filename):
             obs = obs.split()
             obs = list(map(float, obs))
             # print(obs[0])
-            # epoch time
-            obs[0] = float(time.time())
+            
+            if (len(obs) > 10):
+                # epoch time
+                obs[0] = float(time.time())
 
-            # # read from keyboard, append each as binary to obs
-            # pygame.event.get()
-            # keypressed = pygame.key.get_pressed()
-            #
-            # for k in keypressed:
-            #     obs.append(k)
+                # # read from keyboard, append each as binary to obs
+                # pygame.event.get()
+                # keypressed = pygame.key.get_pressed()
+                #
+                # for k in keypressed:
+                #     obs.append(k)
 
-            # append ground truth
-            obs.append(positionFlow[current]["ground"])
+                # append ground truth
+                obs.append(positionFlow[current]["ground"])
 
-            writer.writerow(obs)
-            obs = ser.readline()
+                writer.writerow(obs)
+                obs = ser.readline()
 
             # change positions
             if (time.time() - start > iterLength) and iter == numIters:
