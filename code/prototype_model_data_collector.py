@@ -6,7 +6,7 @@ import os
 import time
 import class_collector as classes
 import sys
-#import playSound
+import playSound
 
 # collects data during calibration period and immediately trains decision tree model
 
