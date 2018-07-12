@@ -1,7 +1,7 @@
 # import speech_recognition as sr
 import speech_recognition as sr
 import os
-from playSound import playSound
+#from playSound import playSound
 
 # obtain audio from the microphone
 r = sr.Recognizer()
@@ -38,7 +38,7 @@ while True:
                     os.system("espeak 'Okay. Recalibrating.'")
                     import prototype_model_data_collector as prototype
                 elif (said == "play white noise") or (said == "play rain sounds"):
-                    playSound("../sounds/rain.mp3")
+                    #playSound("../sounds/rain.mp3")
                 else:
                     os.system("espeak 'Sorry, I did not understand.'")
 
