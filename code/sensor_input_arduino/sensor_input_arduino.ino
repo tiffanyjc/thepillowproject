@@ -25,9 +25,8 @@ void setup(void)
   muxShield.setMode(2,ANALOG_IN);
   //muxShield.setMode(3,ANALOG_IN);
   
-  Serial.end(); 
-  Serial.begin(9600);
 //  Serial.println("Orientation Sensor Test"); Serial.println("");
+  Serial.begin(9600);
   
   /* Initialise the sensor */
   if(!bno.begin())
@@ -36,8 +35,6 @@ void setup(void)
     Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
     while(1);
   }
-  
-  delay(1000);
     
   bno.setExtCrystalUse(true);
 }
@@ -126,7 +123,7 @@ Serial.print(" ");
    double volts = (peakToPeak * 5.0) / 1024;  // convert to volts
 
    Serial.print(volts);
-   Serial.println(" "); 
+   Serial.print(" "); 
 
    // end microphone stuff
    
@@ -146,9 +143,15 @@ Serial.print(" ");
     }
 
     for (int l = 0; l < numPin2; l ++) {
-      Serial.print(IO1AnalogVals[l]);
-      Serial.print(' '); 
-  }
+      if (l <= numPin2 -2) {
+        Serial.print(IO1AnalogVals[l]);
+        Serial.print(' '); 
+      } else {
+        Serial.print(IO1AnalogVals[l]);
+      }
+    }
+    
+    Serial.println();
    
     delay(250); 
 }
