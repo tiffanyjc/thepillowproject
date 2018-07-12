@@ -14,3 +14,8 @@ def ignore_stdout():
     finally:
         os.dup2(old_stdout, 1)
         os.close(old_stdout)
+        
+if __name__ == "__main__":
+    ignore_stdout()
+    
+
