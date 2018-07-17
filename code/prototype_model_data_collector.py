@@ -35,7 +35,7 @@ def collect(filename):
 
     current = "right"
     print("current: ", current)
-    os.system("espeak 'please turn onto your '")
+    os.system("espeak -ven+f3 -k5 -s150 'please turn onto your '")
     os.system(positionFlow[current]["command"])
 
     start = time.time()
@@ -66,7 +66,7 @@ def collect(filename):
                 current = positionFlow[current]["next"]
                 print("current: ", current)
                 playSound('../sounds/transitionBeep.wav')
-                os.system("espeak 'please turn onto your '")
+                os.system("espeak -ven+f3 -k5 -s150 'please turn onto your '")
                 os.system(positionFlow[current]["command"])
                 time.sleep(2)
                 print("continue")

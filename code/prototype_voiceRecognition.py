@@ -22,8 +22,8 @@ while True:
         print("You said: " + said)
 
         # only activate when user says "hey pillow"
-        if (said == "hey pillow") or (said == "hey hello"):
-            os.system("espeak 'How can I help you?'")
+        if (said == "hey pillow") or (said == "hey hello") or (said == "hey fellow") or (said == "elbow") or (said == "hey"):
+            os.system("espeak -ven+f3 -k5 -s150 'How can I help you?'")
             print("how can I help you? ")
 
             with sr.Microphone() as source:
@@ -35,13 +35,13 @@ while True:
 
                 # possible commands
                 if (said == "recalibrate"):
-                    os.system("espeak 'Okay. Recalibrating.'")
+                    os.system("espeak -ven+f3 -k5 -s150 'Okay. Recalibrating.'")
                     import prototype_model_data_collector as prototype
                 elif (said == "play white noise") or (said == "play rain sounds"):
                     playSound("../sounds/rain.mp3")
                     print ("white noise")
                 else:
-                    os.system("espeak 'Sorry, I did not understand.'")
+                    os.system("espeak -ven+f3 -k5 -s150 'Sorry, I did not understand.'")
 
             except sr.UnknownValueError:
                 print("Google Speech Recognition could not understand audio")
