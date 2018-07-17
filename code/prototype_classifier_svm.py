@@ -11,7 +11,7 @@ def trainer():
     test = []
     ground_test = []
     # need to figure out a way to clean the data a little
-    files = ["prototype_data_gillian_training.csv"]
+    files = ["jiaju_ma_new_model.csv"]
 
     for f in files:
 

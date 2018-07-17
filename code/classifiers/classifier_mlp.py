@@ -9,10 +9,10 @@ import csv
 
 # read from csv, build into np array
 training = []
-ground = []
+ground_training = []
 test = []
 ground_test = []
-files = ["../prototype_data_tiffany_training.csv"]
+files = ["../jiaju_ma_new_model.csv"]
 # files = ["data2_elizabeth_kmeans.csv", "data2_gillians_kmeans.csv"]
 
 for f in files:
@@ -27,18 +27,21 @@ for f in files:
 
     i = 0
     for obs in reader:
+        
+        if len(obs) == len(headers):
+            # add that vector to the greater np array
+            obs_nums = list(map(float, obs[1:-1]))
 
-        # add that vector to the greater np array
-        obs = list(map(float, obs))
+            if alt:
+                training.append(obs_nums)
+                ground_training.append((obs[-1]))
+                # ground_training.append(int(obs[-1]))
+            else:
+                test.append(obs_nums)
+                ground_test.append((obs[-1]))
+                # ground_test.append(int(obs[-1]))
 
-        if random.randint(1, 10) < 8:
-            training.append(obs[1:-1])
-            ground.append(int(obs[-1]))
-        else:
-            test.append(obs[1:-1])
-            ground_test.append(obs[-1])
-
-        alt = not alt
+            alt = not alt
 
 
 # transform dataset first #########################
@@ -59,19 +62,20 @@ clf = MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto',
        nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
        solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,
        warm_start=False)
-clf.fit(training, ground)
+clf.fit(training, ground_training)
 
 results = clf.predict(test)
 
 from sklearn.metrics import f1_score
 print("f1: " , f1_score(results, ground_test, average='macro'))
 
-
 correct = 0
+
 for i in range(len(results)):
-    results[i] = results[i] == ground[i]
-    if results[i]:
+    
+   if results[i] == ground_test[i]:
+        results[i] = results[i] == ground_test[i]
         correct += 1
 
-print(correct / len(results))
+print(correct * 100 / len(results))
 
