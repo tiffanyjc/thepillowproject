@@ -12,8 +12,8 @@ from playSound import playSound
 
 def collect(filename):
     # initializing things
-    numIters = 8 # number of positions to cycle through during calibration
-    iterLength = 20 # number of loops each position should be held for
+    numIters = 12 # number of positions to cycle through during calibration
+    iterLength = 30 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=None)
