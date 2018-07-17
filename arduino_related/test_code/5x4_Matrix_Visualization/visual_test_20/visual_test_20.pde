@@ -17,8 +17,8 @@ int margin = 100;
 
 void setup () { 
   size(1200, 1000);  // set up the window to whatever size you want
-  //println(Serial.list());  // List all the available serial ports
-  String portName = Serial.list()[0];
+  println(Serial.list());  // List all the available serial ports
+  String portName = Serial.list()[1];
   myPort = new Serial(this, portName, 9600);
   myPort.clear();
   myPort.bufferUntil('\n');  // don't generate a serialEvent() until you get a newline (\n) byte
@@ -82,8 +82,11 @@ void serialEvent (Serial myPort) {
     if (incomingValues.length <= maxNumberOfSensors && incomingValues.length > 0) {
       for (int i = 0; i < incomingValues.length; i++) {
         // map the incoming values (0 to  1023) to an appropriate gray-scale range (0-255):
-        sensorValue[i] = map(incomingValues[i], 0, 10, 255, 0);  
-       // println(i + "value: " + sensorValue[i]);
+        if(incomingValues[i] > 10){
+          sensorValue[i] = map(incomingValues[i], 0, 100, 255, 0);  
+        } else {
+          sensorValue[i] = 255;
+        }
       }
     }
   }
