@@ -14,13 +14,14 @@ def collect(filename):
     writer = csv.writer(file)
 
     # change this if you want to use a different userID
-    userID = "1234"
+    userID = "jiaju_ma@brown.edu"
 
     # set up headers
     headers = ["time", "accelX", "accelY", "accelZ", "gyroX", "gyroY", "gyroZ", "eulerX", "eulerY", "eulerZ", "mic"]
 
-    for i in range(1, 324):
-        headers.append("key" + str(i))
+    # changed to FSR pressure grid
+    for i in range(20):
+        headers.append("FSR" + str(i))
 
     writer.writerow(headers)
 
@@ -34,14 +35,6 @@ def collect(filename):
 
             # epoch time
             obs[0] = float(time.time())
-
-            # read from keyboard, append each as binary to obs
-            pygame.event.get()
-            keypressed = pygame.key.get_pressed()
-
-            for k in keypressed:
-
-                obs.append(k)
 
             writer.writerow(obs)
             obs = ser.readline()
