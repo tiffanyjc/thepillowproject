@@ -91,5 +91,8 @@ def collect(filename):
 
 # when it's executed on command line .. need to input filename as first arg
 if __name__ == "__main__":
-    first_arg = sys.argv[1]
-    collect(first_arg)
+    try:
+        first_arg = sys.argv[1]
+        collect(first_arg)
+    except IndexError:
+        print("Missing argument: need to provide filename to write data to.")
