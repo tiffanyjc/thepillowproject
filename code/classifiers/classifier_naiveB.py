@@ -9,7 +9,7 @@ training = []
 ground_training = []
 test = []
 ground_test = []
-files = ["../prototype_data_tiffany_training.csv"]
+files = ["../jiaju_ma_new_model.csv"]
 # files = ["data2_elizabeth_kmeans.csv", "data2_gillians_kmeans.csv"]
 
 for f in files:
@@ -30,10 +30,10 @@ for f in files:
 
         if random.randint(1, 10) < 8:
             training.append(obs_nums)
-            ground_training.append(int(obs[-1]))
+            ground_training.append(obs[-1])
         else:
             test.append(obs_nums)
-            ground_test.append(int(obs[-1]))
+            ground_test.append(obs[-1])
 
         alt = not alt
 

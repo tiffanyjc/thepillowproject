@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1b4f6a78-447f-4675-8190-49d2efe1ac5c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/googleVUI.py" afterPath="$PROJECT_DIR$/code/googleVUI.py" />
+    <list default="true" id="1b4f6a78-447f-4675-8190-49d2efe1ac5c" name="Default" comment="Merge branch 'master' of git://github.com/jama1017/thepillowproject into jama1017-master&#10;&#10;# Conflicts:&#10;#&#9;code/prototype_model_data_collector.py&#10;#&#9;code/prototype_voiceRecognition.py&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arduino_related/libraries/Adafruit_BNO055-1.1.6.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arduino_related/libraries/Adafruit_Unified_Sensor-1.0.2.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arduino_related/libraries/MuxShield.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arduino_related/test_code/5x4_Matrix_Visualization/matrix_test_20/matrix_test_20.ino" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/arduino_related/test_code/5x4_Matrix_Visualization/visual_test_20/visual_test_20.pde" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/jiaju_ma_model_12_30.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/jiaju_ma_new_model.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/switchToSoundDevice.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/code/jiaju_ma_test.csv" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/arduino_test code/FSR_test/FSR_test.ino" afterPath="$PROJECT_DIR$/arduino_related/test_code/FSR_test/FSR_test.ino" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/code/sketch_nov16a/sketch_nov16a.ino" afterPath="$PROJECT_DIR$/code/sensor_input_arduino/sensor_input_arduino.ino" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/class_collector.py" afterPath="$PROJECT_DIR$/code/class_collector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/classifiers/classifier_mlp.py" afterPath="$PROJECT_DIR$/code/classifiers/classifier_mlp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/classifiers/classifier_naiveB.py" afterPath="$PROJECT_DIR$/code/classifiers/classifier_naiveB.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/prototype_classifier_svm.py" afterPath="$PROJECT_DIR$/code/prototype_classifier_svm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/prototype_model_data_collector.py" afterPath="$PROJECT_DIR$/code/prototype_model_data_collector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/prototype_sleep_data_collector.py" afterPath="$PROJECT_DIR$/code/prototype_sleep_data_collector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/prototype_voiceRecognition.py" afterPath="$PROJECT_DIR$/code/prototype_voiceRecognition.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,14 +45,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prototype_voiceRecognition.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="prototype_voiceRecognition.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/prototype_voiceRecognition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state relative-caret-position="237">
+              <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prototype_model_data_collector.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/prototype_model_data_collector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="88" column="26" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -44,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/code/googleVUI.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="269">
-              <caret line="155" column="31" lean-forward="true" selection-start-line="155" selection-start-column="31" selection-end-line="155" selection-end-column="31" />
+              <caret line="155" column="31" lean-forward="false" selection-start-line="155" selection-start-column="31" selection-end-line="155" selection-end-column="31" />
               <folding>
                 <element signature="e#706#737#0" expanded="true" />
               </folding>
@@ -85,9 +112,9 @@
         <option value="$PROJECT_DIR$/code/playVUI.py" />
         <option value="/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/tts_watson/TtsWatson.py" />
         <option value="$PROJECT_DIR$/code/googleCloudListener.py" />
-        <option value="$PROJECT_DIR$/code/prototype_model_data_collector.py" />
         <option value="$PROJECT_DIR$/code/googleVUI.py" />
         <option value="$PROJECT_DIR$/code/prototype_voiceRecognition.py" />
+        <option value="$PROJECT_DIR$/code/prototype_model_data_collector.py" />
       </list>
     </option>
   </component>
@@ -721,18 +748,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/prototype_model_data_collector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="96" column="22" lean-forward="false" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/googleVUI.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
-          <caret line="155" column="31" lean-forward="true" selection-start-line="155" selection-start-column="31" selection-end-line="155" selection-end-column="31" />
+          <caret line="155" column="31" lean-forward="false" selection-start-line="155" selection-start-column="31" selection-end-line="155" selection-end-column="31" />
           <folding>
             <element signature="e#706#737#0" expanded="true" />
           </folding>
@@ -741,11 +760,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/prototype_voiceRecognition.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state relative-caret-position="237">
+          <caret line="22" column="48" lean-forward="false" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/prototype_model_data_collector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="88" column="26" lean-forward="false" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>

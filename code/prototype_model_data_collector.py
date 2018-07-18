@@ -6,14 +6,14 @@ import os
 import time
 import class_collector as classes
 import sys
-import playSound
+from playSound import playSound
 
 # collects data during calibration period and immediately trains decision tree model
 
 def collect(filename):
     # initializing things
-    numIters = 8 # number of positions to cycle through during calibration
-    iterLength = 20 # number of loops each position should be held for
+    numIters = 12 # number of positions to cycle through during calibration
+    iterLength = 30 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=None)
@@ -26,15 +26,16 @@ def collect(filename):
     # set up headers
     headers = ["time", "accelX", "accelY", "accelZ", "gyroX", "gyroY", "gyroZ", "eulerX", "eulerY", "eulerZ", "mic"]
 
-    for i in range(1, 324):
-        headers.append("key" + str(i))
+    # changed to FSR pressure grid
+    for i in range(20):
+        headers.append("FSR" + str(i))
 
     headers.append("ground")
     writer.writerow(headers)
 
     current = "right"
     print("current: ", current)
-    os.system("espeak 'please turn onto your '")
+    os.system("espeak -ven+f3 -k5 -s150 'please turn onto your '")
     os.system(positionFlow[current]["command"])
 
     start = time.time()
@@ -47,21 +48,16 @@ def collect(filename):
             obs = obs.split()
             obs = list(map(float, obs))
             # print(obs[0])
-            # epoch time
-            obs[0] = float(time.time())
+            
+            if (len(obs) > 10):
+                # epoch time
+                obs[0] = float(time.time())
 
-            # read from keyboard, append each as binary to obs
-            pygame.event.get()
-            keypressed = pygame.key.get_pressed()
+                # append ground truth
+                obs.append(positionFlow[current]["ground"])
 
-            for k in keypressed:
-                obs.append(k)
-
-            # append ground truth
-            obs.append(positionFlow[current]["ground"])
-
-            writer.writerow(obs)
-            obs = ser.readline()
+                writer.writerow(obs)
+                obs = ser.readline()
 
             # change positions
             if (time.time() - start > iterLength) and iter == numIters:
@@ -70,7 +66,7 @@ def collect(filename):
                 current = positionFlow[current]["next"]
                 print("current: ", current)
                 playSound('../sounds/transitionBeep.wav')
-                os.system("espeak 'please turn onto your '")
+                os.system("espeak -ven+f3 -k5 -s150 'please turn onto your '")
                 os.system(positionFlow[current]["command"])
                 time.sleep(2)
                 print("continue")
