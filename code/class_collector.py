@@ -20,7 +20,7 @@ def collect():
             if i:
                 positionFlow[obsClass][headers[i]] = obs[i]
 
-        positionFlow[obsClass]['command'] = "say '" + positionFlow[obsClass]['command'] + "'"
+        positionFlow[obsClass]['command'] = "espeak '" + positionFlow[obsClass]['command'] + "'"
 
     file.close()
 

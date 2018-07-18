@@ -11,7 +11,7 @@ while True:
 
     # Active listening state // listens to all sorts of commands
     if (said == "hey pillow"):
-        os.system("espeak 'How can I help you?'")
+        os.system("espeak -ven+f3 -k5 -s150 'How can I help you?'")
         print("how can I help you? ")
 
         said = (googleVUI.main()).lower()
@@ -20,11 +20,11 @@ while True:
         # possible commands
         if (said == "recalibrate"):
             print("Okay. Recalibrating.")
-            os.system("espeak 'Okay. Recalibrating.'")
+            os.system("espeak -ven+f3 -k5 -s150 'Okay. Recalibrating.'")
             import prototype_model_data_collector as prototype
         elif (said == "play white noise") or (said == "play rain sounds"):
             print("Okay. Playing rain sounds.")
             playSound("../sounds/rain.mp3")
         else:
             print("Sorry, I did not understand.")
-            os.system("espeak 'Sorry, I did not understand.'")
+            os.system("espeak -ven+f3 -k5 -s150 'Sorry, I did not understand.'")
