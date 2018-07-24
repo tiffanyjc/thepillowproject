@@ -12,7 +12,7 @@ from playSound import playSound
 
 def collect(filename):
     # initializing things
-    numIters = 12 # number of positions to cycle through during calibration
+    numIters = 8 # number of positions to cycle through during calibration
     iterLength = 30 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
