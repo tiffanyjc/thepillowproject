@@ -18,6 +18,8 @@ MuxShield muxShield;
 int numPin1 = 16;
 int numPin2 = 4;
 
+int noiseFilter = 10;
+
 void setup(void) 
 {
   //Set I/O 1, I/O 2, and I/O 3 as analog inputs
@@ -130,11 +132,19 @@ Serial.print(" ");
    //FSR Pressure Grid
    
     for (int i = 0; i < numPin1; i ++) {
-      IO2AnalogVals[i] = muxShield.analogReadMS(2,i);
+      if (muxShield.analogReadMS(2,i) > noiseFilter) {
+        IO2AnalogVals[i] = muxShield.analogReadMS(2,i);
+      } else {
+        IO2AnalogVals[i] = 0;
+      }
     }
 
     for (int j = 0; j < numPin2; j ++) {
-      IO1AnalogVals[j] = muxShield.analogReadMS(1,j);
+       if (muxShield.analogReadMS(1,j) > noiseFilter) {
+         IO1AnalogVals[j] = muxShield.analogReadMS(1,j);
+      } else {
+         IO1AnalogVals[j] = 0;
+      }
     }
       
     for (int k = 0; k < numPin1; k ++) {
