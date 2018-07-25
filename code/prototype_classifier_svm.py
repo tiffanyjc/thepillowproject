@@ -12,7 +12,7 @@ def trainer():
     test = []
     ground_test = []
     # need to figure out a way to clean the data a little
-    files = ["jiaju_ma_model_12_30.csv"]
+    files = ["jiaju_ma_filtered.csv"]
 
     for f in files:
 
@@ -27,7 +27,7 @@ def trainer():
         i = 0
         for obs in reader:
             if len(obs) == len(headers):
-                
+
                 # add that vector to the greater np array
                 obs_nums = list(map(float, obs[1:-1]))
 
