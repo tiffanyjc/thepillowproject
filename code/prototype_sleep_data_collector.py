@@ -33,11 +33,12 @@ def collect(filename):
             obs = obs.split()
             obs = list(map(float, obs))
 
-            # epoch time
-            obs[0] = float(time.time())
+            if (len(obs) > 10):
+                # epoch time
+                obs[0] = float(time.time())
 
-            writer.writerow(obs)
-            obs = ser.readline()
+                writer.writerow(obs)
+                obs = ser.readline()
 
         except KeyboardInterrupt:
             break
@@ -46,8 +47,8 @@ def collect(filename):
     ser.close()
 
     # send data to SleepCoacher server
-    sender.sendData(filename, userID)
-    print("data sent!")
+    #sender.sendData(filename, userID)
+    #print("data sent!")
 
 # when it's executed on command line
 if __name__ == "__main__":
