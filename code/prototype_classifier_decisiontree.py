@@ -123,7 +123,7 @@ def trainer(trainingData, rawData):
             for obs in reader:
                 # gets rid of some missed data at beginning [0:-1]
                 if len(obs) == len(headers):
-                    obs_nums = list(map(float, obs[0:-1]))
+                    obs_nums = list(map(float, obs))
                     data.append(obs_nums[1:])
                     times.append(obs_nums[0])
 
@@ -145,7 +145,7 @@ def trainer(trainingData, rawData):
                 if results[i] != rprev or i == (len(results) - 1):
 
                     # cut out noise
-                    if times[i] - tstart >= 1:
+                    if times[i] - tstart >= 3:
                         print(
                             datetime.datetime.fromtimestamp(tstart).strftime('%Y-%m-%d %H:%M:%S'),
                             ": ",
