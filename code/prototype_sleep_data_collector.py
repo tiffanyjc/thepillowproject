@@ -14,6 +14,7 @@ def collect(filename):
     writer = csv.writer(file)
 
     # change this if you want to use a different userID
+    #userID = "valerie_nguon@brown.edu"
     userID = "jiaju_ma@brown.edu"
 
     # set up headers
