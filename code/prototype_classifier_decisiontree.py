@@ -97,7 +97,7 @@ def trainer(trainingData, rawData):
 
     from sklearn.metrics import confusion_matrix
 
-    labels = ["right", "stomach", "left", "back"]
+    labels = ["right", "stomach", "left", "back", "off"]
 
     cm = confusion_matrix(ground_test, results)
     print("confusion matrix: \n")

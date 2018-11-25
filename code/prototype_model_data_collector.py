@@ -12,11 +12,12 @@ from playSound import playSound
 
 def collect(filename):
     # initializing things
-    numIters = 8 # number of positions to cycle through during calibration
+    numIters = 10 # number of positions to cycle through during calibration
     iterLength = 30 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=None)
+    ser.flushInput()
     pygame.init()
     file = open(filename, "w", encoding="utf8")
     writer = csv.writer(file)
@@ -33,6 +34,10 @@ def collect(filename):
     headers.append("ground")
     writer.writerow(headers)
 
+    #first line from arduino is always noise, so read that first
+    for j in range(5):
+        ser.readline()
+
     current = "right"
     print("current: ", current)
     os.system("espeak -ven+f3 -k5 -s150 'please turn onto your '")
@@ -44,12 +49,13 @@ def collect(filename):
         # for iter in range (0, numIters):
         try:
             # read data from arduino
+            ser.flushInput();
             obs = ser.readline().decode("utf-8")
             obs = obs.split()
             obs = list(map(float, obs))
             # print(obs[0])
 
-            if (len(obs) > 10):
+            if (len(obs) == 31):
                 # epoch time
                 obs[0] = float(time.time())
 
@@ -68,7 +74,7 @@ def collect(filename):
                 playSound('../sounds/transitionBeep.wav')
                 os.system("espeak -ven+f3 -k5 -s150 'please turn onto your '")
                 os.system(positionFlow[current]["command"])
-                time.sleep(2)
+                time.sleep(5)
                 print("continue")
                 start = time.time()
                 iter += 1
