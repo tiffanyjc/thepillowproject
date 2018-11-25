@@ -48,7 +48,7 @@ def collect(filename):
             obs = obs.split()
             obs = list(map(float, obs))
             # print(obs[0])
-            
+
             if (len(obs) > 10):
                 # epoch time
                 obs[0] = float(time.time())

@@ -3,7 +3,12 @@ import csv
 # collects the order of classes to be used during the calibration period
 def collect():
     # initializing things
-    file = open("classes.csv", "rt", encoding="utf8")
+
+    #original classes by Tiffany
+    # file = open("classes.csv", "rt", encoding="utf8")
+    
+    #original classes + off class
+    file = open("classes_withoff.csv", "rt", encoding="utf8")
     reader = csv.reader(file)
     headers = next(reader)
     positionFlow = {}

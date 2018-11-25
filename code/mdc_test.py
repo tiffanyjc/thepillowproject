@@ -12,8 +12,8 @@ from playSound import playSound
 
 def collect(filename):
     # initializing things
-    numIters = 4 # number of positions to cycle through during calibration
-    iterLength = 6 # number of loops each position should be held for
+    numIters = 5 # number of positions to cycle through during calibration
+    iterLength = 3 # number of loops each position should be held for
 
     # TODO: change usb port to match yours! (make sure u do this in every file)
     ser = serial.Serial('COM4', 9600, timeout=None)
