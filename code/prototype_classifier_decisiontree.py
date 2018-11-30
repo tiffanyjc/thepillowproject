@@ -5,6 +5,7 @@ import random
 import sys
 import datetime
 import prototype_confusionmatrix as cm_maker
+import shutil
 
 from sklearn import tree
 clf = tree.DecisionTreeClassifier(criterion="entropy")
@@ -117,6 +118,11 @@ def trainer(trainingData, rawData):
             data = []
             times = []
             file = open(rawData, "rt", encoding="utf8")
+
+            #create a copy of the file to appende class to
+            classified_file = rawData.split(".")[0] + "_classified.csv"
+            shutil.copyfile(rawData, classified_file)
+
             reader = csv.reader(file)
             headers = next(reader)
 
@@ -129,8 +135,19 @@ def trainer(trainingData, rawData):
 
             # data = scaler.transform(test)
             results = clf.predict(data)
-            # tree.export_graphviz(clf, out_file="tree_2.dot")
             print(results)
+
+            print("appending classes to file")
+            with open(classified_file, 'r') as f:
+                i = 0
+                file_lines = ""
+                out_results = np.insert(results, 0, "class")
+                for x in f.readlines():
+                    file_lines += x.strip() + "," + out_results[i] + '\n'
+                    i += 1
+
+            with open(classified_file, 'w') as f:
+                f.writelines(file_lines)
 
             # get position and duration
             rprev = ''
