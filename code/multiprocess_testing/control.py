@@ -3,7 +3,7 @@ import time
 import sys
 import os
 import signal
-from cmd import Cmd
+import subprocess
 import write_forever as wf
 from multiprocessing import Process
 
@@ -26,16 +26,14 @@ def do_quit():
 
 def do_wf():
     global myprocess
-    myprocess = Process(target=wf.writeToCSV)
-    myprocess.start()
-    print("process started")
+    myprocess = subprocess.Popen(["python3", "./write_forever.py"])
+    print("process started" + str(myprocess.pid))
 
 def do_kill():
     global myprocess
     if myprocess != None:
-        pid = myprocess.pid
-        os.kill(pid, signal.CTRL_BREAK_EVENT)
-        print("process terminated")
+        myprocess.send_signal(signal.SIGINT)
+        print("process terminated" + str(myprocess.pid))
     else:
         print("process is null")
 
