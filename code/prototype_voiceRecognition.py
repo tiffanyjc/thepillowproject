@@ -1,6 +1,15 @@
 import os
+import csv
+import time
+import signal
+import subprocess
+from multiprocessing import Process
 from playSound import playSound
 import googleVUI
+import prototype_model_data_collector as prototype
+import sdc.py as sleep_collector
+
+myprocess = None
 
 # continuously listens for commands
 while True:
@@ -21,7 +30,22 @@ while True:
         if (said == "recalibrate"):
             print("Okay. Recalibrating.")
             os.system("espeak -ven+f3 -k5 -s150 'Okay. Recalibrating.'")
-            import prototype_model_data_collector as prototype
+            prototype.collect(test.csv);
+        elif(said == "sleeping"):
+            print("Okay. Collecting sleep data.")
+            os.system("espeak -ven+f3 -k5 -s150 'Okay. Good night! I will collecting your sleep data.'")
+            global myprocess
+            myprocess = subprocess.Popen(["python3", "./sdc.py", "overnighttest.csv"])
+        elif(said == "stop"):
+            print("Okay. Sleep data collection stopped.")
+            os.system("espeak -ven+f3 -k5 -s150 'Okay. Good morning.'")
+            global myprocess
+            global myprocess
+            if myprocess != None:
+                myprocess.send_signal(signal.SIGINT)
+                print("process terminated" + str(myprocess.pid))
+            else:
+                print("process is null")
         elif (said == "play white noise") or (said == "play rain sounds"):
             print("Okay. Playing rain sounds.")
             playSound("../sounds/rain.mp3")
