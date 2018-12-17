@@ -149,6 +149,14 @@ def trainer(trainingData, rawData):
             with open(classified_file, 'w') as f:
                 f.writelines(file_lines)
 
+            #appending subjecting rating to end of file
+            rating = ""
+            with open("rating_temp.csv", 'r') as f:
+                rating = f.readlines()
+                
+            with open(classified_file, 'a') as f:
+                f.writerow(rating)
+
             # get position and duration
             rprev = ''
             rprev = results[0]
