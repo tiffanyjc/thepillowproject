@@ -75,8 +75,10 @@ while True:
             #store rating in a csv
             file = open("rating_temp.csv", "w", encoding="utf8")
             writer = csv.writer(file)
-            writer.writerow({"rating", rating})
+            writer.writerow(["rating", rating])
             file.close()
+            print("Done collecting rating")
+            os.system("espeak -ven+f3 -k5 -s150 'Okay. Have a good day!'")
 
         elif (said == "play white noise") or (said == "play rain sounds"):
             print("Okay. Playing rain sounds.")
