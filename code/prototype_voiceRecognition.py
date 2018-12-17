@@ -62,13 +62,13 @@ while True:
                 elif (said == "two"):
                     rating = 2
                     break
-                elif (said = "three"):
+                elif (said == "three"):
                     rating = 3
                     break
-                elif (said = "four"):
+                elif (said == "four"):
                     rating = 4
                     break
-                elif (said = "five"):
+                elif (said == "five"):
                     rating = 5
                     break
 
