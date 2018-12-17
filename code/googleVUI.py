@@ -143,7 +143,9 @@ def listen_print_loop(responses):
 
 
 def main():
-    phrase_hints = ["hey pillow", "recalibrate", "play rain sounds", "play white noise", "sleeping", "stop"]
+    phrase_hints = ["hey pillow", "recalibrate", "play rain sounds",
+                    "play white noise", "sleeping", "stop", "one", "two", "three",
+                    "four", "five"]
 
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
