@@ -155,7 +155,7 @@ def trainer(trainingData, rawData):
                 rating = f.readlines()
                 
             with open(classified_file, 'a') as f:
-                f.writerow(rating)
+                f.writelines(rating)
 
             # get position and duration
             rprev = ''
