@@ -32,7 +32,7 @@ while True:
             prototype.collect("test.csv");
         elif(said == "sleeping"):
             print("Okay. Collecting sleep data.")
-            os.system("espeak -ven+f3 -k5 -s150 'Okay. Good night! I will collecting your sleep data.'")
+            os.system("espeak -ven+f3 -k5 -s150 'Okay. Good night! I will collect your sleep data.'")
             global myprocess
             myprocess = subprocess.Popen(["python3", "./sdc.py", "overnighttest.csv"])
         elif(said == "stop"):
