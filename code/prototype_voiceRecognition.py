@@ -6,7 +6,7 @@ import subprocess
 from multiprocessing import Process
 from playSound import playSound
 import googleVUI
-import prototype_model_data_collector as prototype
+import prototype_model_data_collector as collector
 
 myprocess = None
 
@@ -29,7 +29,7 @@ while True:
         if (said == "recalibrate"):
             print("Okay. Recalibrating.")
             os.system("espeak -ven+f3 -k5 -s150 'Okay. Recalibrating.'")
-            prototype.collect("calibrate_test.csv");
+            collector.collect("calibrate_test.csv");
         elif(said == "sleeping"):
             print("Okay. Collecting sleep data.")
             os.system("espeak -ven+f3 -k5 -s150 'Okay. Good night! I will collect your sleep data.'")
