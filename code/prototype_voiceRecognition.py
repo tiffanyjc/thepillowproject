@@ -29,12 +29,12 @@ while True:
         if (said == "recalibrate"):
             print("Okay. Recalibrating.")
             os.system("espeak -ven+f3 -k5 -s150 'Okay. Recalibrating.'")
-            prototype.collect("test.csv");
+            prototype.collect("calibrate_test.csv");
         elif(said == "sleeping"):
             print("Okay. Collecting sleep data.")
             os.system("espeak -ven+f3 -k5 -s150 'Okay. Good night! I will collect your sleep data.'")
             global myprocess
-            myprocess = subprocess.Popen(["python3", "./sdc.py", "overnighttest.csv"])
+            myprocess = subprocess.Popen(["python3", "./sdc.py", "on_test.csv"])
         elif(said == "stop"):
             print("Okay. Sleep data collection stopped.")
             os.system("espeak -ven+f3 -k5 -s150 'Okay. Good morning.'")
