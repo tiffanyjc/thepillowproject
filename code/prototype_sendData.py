@@ -5,7 +5,7 @@ import sys
 # sends data collected from user with ID from filename to Sleepcoacher server
 def sendData(filename, ID):
     # api endpoint
-    API_ENDPOINT = "http://sleep.cs.brown.edu:443"
+    API_ENDPOINT = "http://pillow.cs.brown.edu:443"
 
     # first clean data of any faulty / incomplete data
     fileR = open(filename, "rt", encoding="utf8")
