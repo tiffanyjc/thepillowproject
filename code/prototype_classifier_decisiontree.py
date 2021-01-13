@@ -5,6 +5,11 @@ import random
 import sys
 import datetime
 import prototype_confusionmatrix as cm_maker
+import shutil
+
+from sklearn import tree
+clf = tree.DecisionTreeClassifier(criterion="entropy")
+# clf = tree.DecisionTreeClassifier()
 
 # to create confusion matrix
 def print_cm(cm, labels, hide_zeroes=False, hide_diagonal=False, hide_threshold=None):
@@ -57,7 +62,7 @@ def trainer(trainingData, rawData):
             # add that vector to the greater np array
             obs_nums = list(map(float, obs[1:-1]))
 
-            if random.randint(1, 10) < 8:
+            if random.randint(1, 10) < 7:
                 training.append(obs_nums)
                 ground_training.append(obs[-1])
             else:
@@ -68,30 +73,32 @@ def trainer(trainingData, rawData):
     scaler = StandardScaler()
 
     # Don't cheat - fit only on training data
-    scaler.fit(training)
-    training = scaler.transform(training)
+    # scaler.fit(training)
+    # training = scaler.transform(training)
 
     # apply same transformation to test data
-    test = scaler.transform(test)
+    # test = scaler.transform(test)
 
     #######################################
     ##### TRAIN AND VALIDATE MODEL #######
     #######################################
 
-    from sklearn import tree
-    clf = tree.DecisionTreeClassifier()
+    # from sklearn import tree
+    # clf = tree.DecisionTreeClassifier()
 
     clf.fit(training, ground_training)
+    # tree.export_graphviz(clf, out_file="tree.dot")
 
     results = clf.score(test, ground_test)
     print("\nmodel accuracy: ", results)
     print("\n")
 
     results = clf.predict(test)
+    print(results)
 
     from sklearn.metrics import confusion_matrix
 
-    labels = ["right", "stomach", "left", "back"]
+    labels = ["right", "stomach", "left", "back", "off"]
 
     cm = confusion_matrix(ground_test, results)
     print("confusion matrix: \n")
@@ -111,18 +118,44 @@ def trainer(trainingData, rawData):
             data = []
             times = []
             file = open(rawData, "rt", encoding="utf8")
+
+            #create a copy of the file to appende class to
+            classified_file = rawData.split(".")[0] + "_classified.csv"
+            shutil.copyfile(rawData, classified_file)
+
             reader = csv.reader(file)
             headers = next(reader)
 
             for obs in reader:
-                # gets rid of some missed data at beginning
+                # gets rid of some missed data at beginning [0:-1]
                 if len(obs) == len(headers):
                     obs_nums = list(map(float, obs))
                     data.append(obs_nums[1:])
                     times.append(obs_nums[0])
 
+            # data = scaler.transform(test)
             results = clf.predict(data)
-            # print(results)
+            print(results)
+
+            print("appending classes to file")
+            with open(classified_file, 'r') as f:
+                i = 0
+                file_lines = ""
+                out_results = np.insert(results, 0, "class")
+                for x in f.readlines():
+                    file_lines += x.strip() + "," + out_results[i] + '\n'
+                    i += 1
+
+            with open(classified_file, 'w') as f:
+                f.writelines(file_lines)
+
+            #appending subjecting rating to end of file
+            rating = ""
+            with open("rating_temp.csv", 'r') as f:
+                rating = f.readlines()
+                
+            with open(classified_file, 'a') as f:
+                f.writelines(rating)
 
             # get position and duration
             rprev = ''
@@ -137,7 +170,7 @@ def trainer(trainingData, rawData):
                 if results[i] != rprev or i == (len(results) - 1):
 
                     # cut out noise
-                    if times[i] - tstart >= 1:
+                    if times[i] - tstart >= 3:
                         print(
                             datetime.datetime.fromtimestamp(tstart).strftime('%Y-%m-%d %H:%M:%S'),
                             ": ",

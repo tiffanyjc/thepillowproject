@@ -14,13 +14,15 @@ def collect(filename):
     writer = csv.writer(file)
 
     # change this if you want to use a different userID
-    userID = "1234"
+    #userID = "valerie_nguon@brown.edu"
+    userID = "jiaju_ma@brown.edu"
 
     # set up headers
     headers = ["time", "accelX", "accelY", "accelZ", "gyroX", "gyroY", "gyroZ", "eulerX", "eulerY", "eulerZ", "mic"]
 
-    for i in range(1, 324):
-        headers.append("key" + str(i))
+    # changed to FSR pressure grid
+    for i in range(20):
+        headers.append("FSR" + str(i))
 
     writer.writerow(headers)
 
@@ -32,19 +34,12 @@ def collect(filename):
             obs = obs.split()
             obs = list(map(float, obs))
 
-            # epoch time
-            obs[0] = float(time.time())
+            if (len(obs) > 10):
+                # epoch time
+                obs[0] = float(time.time())
 
-            # read from keyboard, append each as binary to obs
-            pygame.event.get()
-            keypressed = pygame.key.get_pressed()
-
-            for k in keypressed:
-
-                obs.append(k)
-
-            writer.writerow(obs)
-            obs = ser.readline()
+                writer.writerow(obs)
+                obs = ser.readline()
 
         except KeyboardInterrupt:
             break
@@ -53,10 +48,15 @@ def collect(filename):
     ser.close()
 
     # send data to SleepCoacher server
-    sender.sendData(filename, userID)
-    print("data sent!")
+    #sender.sendData(filename, userID)
+    #print("data sent!")
 
 # when it's executed on command line
 if __name__ == "__main__":
-    first_arg = sys.argv[1]
-    collect(first_arg)
+    try:
+        first_arg = sys.argv[1]
+        collect(first_arg)
+    except IndexError:
+        print("Missing argument: need to provide filename to write data to.")
+
+
